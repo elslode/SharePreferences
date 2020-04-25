@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textViewOpinion0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#F44336"
+        android:gravity="center"
+        android:padding="@dimen/paddingIncideTextView"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/TextSizeOptions"
+        android:onClick="onClickAnswer"
+        app:layout_constraintBottom_toTopOf="@+id/textViewOpinion2"
+        app:layout_constraintEnd_toStartOf="@+id/textViewOpinion1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewOpinion1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#009688"
+        android:gravity="center"
+        android:padding="@dimen/paddingIncideTextView"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:onClick="onClickAnswer"
+        android:textSize="@dimen/TextSizeOptions"
+        app:layout_constraintBottom_toTopOf="@+id/textViewOpinion3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textViewOpinion0" />
+
+    <TextView
+        android:id="@+id/textViewOpinion2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FFC107"
+        android:gravity="center"
+        android:padding="@dimen/paddingIncideTextView"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/TextSizeOptions"
+        android:onClick="onClickAnswer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textViewOpinion3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewOpinion3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#9C27B0"
+        android:gravity="center"
+        android:padding="@dimen/paddingIncideTextView"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/TextSizeOptions"
+        android:onClick="onClickAnswer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.668"
+        app:layout_constraintStart_toEndOf="@id/textViewOpinion2" />
+
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#98DC4A"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="361dp"
+        android:layout_height="349dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="246dp"
+        android:text="TextView"
+        android:gravity="center"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewOpinion0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimer"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
