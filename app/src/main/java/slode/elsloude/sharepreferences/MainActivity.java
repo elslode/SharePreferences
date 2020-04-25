@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.prefs.PreferenceChangeEvent;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean isPositive;
     private int min = 5;
     private int max = 30;
+    private int countOfQuestions = 0;
+    private int countOfRightAnswers;
+    private boolean gameOver = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,21 @@ public class MainActivity extends AppCompatActivity {
         options.add(textViewOpinion3);
         generateQuestion();
         PlayNext();
+        CountDownTimer timer = new CountDownTimer(6000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                textViewTimew.setText(getTime(millisUntilFinished));
+            }
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        timer.start();
     }
 
     private void PlayNext() {
+        generateQuestion();
         for (int i = 0; i < options.size(); i++) {
             if (i == rightAnswerPosition) {
                 options.get(i).setText(Integer.toString(rightAnswer));
@@ -59,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 options.get(i).setText(Integer.toString(generateWrongAnswer()));
             }
         }
+        String score = String.format("%s / %s", countOfQuestions, countOfRightAnswers);
+        textViewScore.setText(score);
     }
 
     private void generateQuestion() {
@@ -77,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         textViewQuestion.setText(question);
     }
 
-
     private int generateWrongAnswer() {
         int result;
         do {
@@ -86,7 +103,28 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    private String getTime(long millis) {
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+    };
+
     public void onClickAnswer(View view) {
-        PlayNext();
+        if (!gameOver) {
+            TextView textView = (TextView) view;
+            String answer = textView.getText().toString();
+            int chosenAnswer = Integer.parseInt(answer);
+            if (chosenAnswer == rightAnswer) {
+                countOfRightAnswers++;
+            }
+            if (chosenAnswer == rightAnswer) {
+                Toast.makeText(this, "Верно", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Неверно", Toast.LENGTH_SHORT).show();
+            }
+            countOfQuestions++;
+
+            PlayNext();
+        }
     }
 }
