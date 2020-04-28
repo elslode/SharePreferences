@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         textViewScore.setText(score);
     }
 
+
     private void generateQuestion() {
         int a = (int) (Math.random() * (max - min + 1) + min);
         int b = (int) (Math.random() * (max - min + 1) + min);
