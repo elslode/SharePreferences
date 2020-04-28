@@ -1,19 +1,17 @@
 package slode.elsloude.sharepreferences;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.prefs.PreferenceChangeEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         textViewOpinion1 = findViewById(R.id.textViewOpinion1);
         textViewOpinion2 = findViewById(R.id.textViewOpinion2);
         textViewOpinion3 = findViewById(R.id.textViewOpinion3);
-        textViewScore = findViewById(R.id.textViewScore);
+        textViewScore = findViewById(R.id.textViewResult);
         textViewQuestion = findViewById(R.id.textViewQuestion);
         textViewTimew = findViewById(R.id.textViewTimer);
         options.add(textViewOpinion0);
@@ -53,19 +51,24 @@ public class MainActivity extends AppCompatActivity {
         options.add(textViewOpinion3);
         generateQuestion();
         PlayNext();
-        CountDownTimer timer = new CountDownTimer(6000, 1000) {
+
+        CountDownTimer timer = new CountDownTimer(6000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
                 textViewTimew.setText(getTime(millisUntilFinished));
             }
             @Override
             public void onFinish() {
-
+                gameOver = true;
+                Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+                intent.putExtra("result", countOfRightAnswers);
+                startActivity(intent);
             }
         };
         timer.start();
     }
 
+    @SuppressLint("SetTextI18n")
     private void PlayNext() {
         generateQuestion();
         for (int i = 0; i < options.size(); i++) {
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         int seconds = (int) (millis / 1000);
         int minutes = seconds / 60;
         return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-    };
+    }
 
     public void onClickAnswer(View view) {
         if (!gameOver) {

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">SharePreferences</string>
+    <string name="textviewScore">TextView</string>
+    <string name="StartAgain">Начать сначала</string>
+    <string name="textviewScorer" />
+    <string name="first">TextView</string>
+    <string name="second">TextView</string>
+    <string name="threeth">TextView</string>
+    <string name="firsth">TextView</string>
+    <string name="time">TextView</string>
+    <string name="score">TextView</string>
+    <string name="answer">TextView</string>
 </resources>
